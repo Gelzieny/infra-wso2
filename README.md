@@ -25,3 +25,19 @@ Verifique:
 ```bash
 docker --version
 docker compose version
+
+```
+
+## URLs:
+
+- Portainer
+  https://localhost:9443
+
+- WSO2
+  https://localhost:9444
+
+- WSO2 Publisher
+  https://localhost:9444/publisher
+
+- WSO2 Developer Portal
+  https://localhost:9444/devportal
