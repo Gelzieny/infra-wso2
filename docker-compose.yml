@@ -1,0 +1,36 @@
+services:
+  wso2-apim:
+    image: wso2/wso2am:${WSO2_VERSION}
+    container_name: ${WSO2_CONTAINER_NAME}
+
+    restart: unless-stopped
+
+    ports:
+      - "${WSO2_MANAGEMENT_PORT}:9443"
+      - "${WSO2_GATEWAY_HTTPS_PORT}:8243"
+      - "${WSO2_GATEWAY_HTTP_PORT}:8280"
+
+    environment:
+      TZ: ${TZ}
+
+    volumes:
+      - ./config/deployment.toml:/home/wso2carbon/wso2am-${WSO2_VERSION}/repository/conf/deployment.toml:ro
+
+    healthcheck:
+      test:
+        [
+          "CMD-SHELL",
+          "curl -k -f https://localhost:9443/services/Version || exit 1"
+        ]
+      interval: 30s
+      timeout: 10s
+      retries: 10
+      start_period: 120s
+
+    networks:
+      - goia-network
+
+networks:
+  goia-network:
+    name: goia-network
+    driver: bridge
