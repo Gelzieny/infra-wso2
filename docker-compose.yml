@@ -13,8 +13,6 @@ services:
     environment:
       TZ: ${TZ}
 
-    volumes:
-      - ./config/deployment.toml:/home/wso2carbon/wso2am-${WSO2_VERSION}/repository/conf/deployment.toml:ro
 
     healthcheck:
       test:
